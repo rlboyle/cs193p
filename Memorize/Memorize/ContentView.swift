@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var emojis = ["😀", "😀", "☺️", "☺️", "😡", "😡", "🫡", "🫡", "😭", "😭", "🥸", "🥸", "🫢", "🫢", "😆", "😆"].shuffled()
+    @State var emojis = [""]
     
     @State var color: Color = .blue
     
@@ -21,7 +21,7 @@ struct ContentView: View {
     let theme_colors: [Color] = [.blue, .orange, .green]
     
     
-    @State var cardCount: Int = 12
+    @State var cardCount = 0
     
     var body: some View {
         VStack {
@@ -30,7 +30,7 @@ struct ContentView: View {
                 cards
             }
             Spacer()
-            cardCountAdjusters
+            cardThemeAdjusters
         }
         .padding()
     }
@@ -51,10 +51,9 @@ struct ContentView: View {
     
     func themeAdjust(to array: Array<String>, icon: String, name: String, th_color: Color) -> some View {
         Button(action: {
-            if cardCount > array.count {
-                cardCount = array.count
-            }
-            emojis = array.shuffled()
+            var random = 2*Int.random(in: 2..<array.count/2)
+            cardCount = random
+            emojis = Array(array[0..<random]).shuffled()
             color = th_color
         }, label: {
             ZStack {
@@ -72,19 +71,20 @@ struct ContentView: View {
         })
     }
     
-    var cardCountAdjusters: some View {
-        HStack {
-            cardRemover
-            Spacer()
-            cardThemeAdjusters
-            cardAdder
+    func bestWidth(numCards: Int) -> CGFloat {
+        if numCards <= 4 {
+            return 150.0
+        } else if numCards <= 8 {
+            return 100
+        } else if numCards <= 16 {
+            return 80
+        } else {
+            return 60
         }
-        //.imageScale(.large)
-        .font(.largeTitle)
     }
     
     var cards: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 90))]) {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: bestWidth(numCards: cardCount), maximum: bestWidth(numCards: cardCount)))]) {
             ForEach(0..<cardCount, id: \.self) {index in
                 CardView(content: emojis[index])
                     .aspectRatio(2/3, contentMode: .fit)
@@ -93,28 +93,11 @@ struct ContentView: View {
         .foregroundColor(color)
     }
     
-    func cardCountAdjuster(by offset: Int, symbol: String) -> some View {
-        Button(action: {
-            cardCount += offset
-        }, label: {
-            Image(systemName: symbol)
-        })
-        .disabled(cardCount + offset < 1 || cardCount + offset > emojis.count)
-    }
-    
-    var cardRemover: some View {
-        cardCountAdjuster(by: -1, symbol: "rectangle.stack.badge.minus.fill")
-    }
-    
-    var cardAdder: some View {
-        cardCountAdjuster(by: 1, symbol: "rectangle.stack.badge.plus.fill")
-    }
-    
 }
 
 struct CardView: View {
     let content: String
-    @State var isFaceUp = false
+    @State var isFaceUp = true
     var body: some View {
         ZStack {
             let base = RoundedRectangle(cornerRadius: 12)
