@@ -10,11 +10,16 @@ import SwiftUI
 struct ContentView: View {
     @State var emojis = ["😀", "😀", "☺️", "☺️", "😡", "😡", "🫡", "🫡", "😭", "😭", "🥸", "🥸", "🫢", "🫢", "😆", "😆"].shuffled()
     
+    @State var color: Color = .blue
+    
     let themes = [["😀", "😀", "☺️", "☺️", "😡", "😡", "🫡", "🫡", "😭", "😭", "🥸", "🥸", "🫢", "🫢", "😆", "😆"],
                   ["🎃", "🎃", "👻", "👻", "🧙", "🧙", "😈", "😈", "☠️", "☠️", "👽", "👽", "👹", "👹"],
                   ["🐹", "🐹", "🐱", "🐱", "🐶", "🐶", "🐭", "🐭", "🐰", "🐰", "🦊", "🦊"]]
     
     let theme_names = ["Faces", "Scary", "Animals"]
+    let theme_symbols = ["face.smiling", "exclamationmark.triangle.fill", "pawprint.fill"]
+    let theme_colors: [Color] = [.blue, .orange, .green]
+    
     
     @State var cardCount: Int = 12
     
@@ -38,25 +43,27 @@ struct ContentView: View {
         HStack {
             Spacer()
             ForEach(0..<themes.count, id: \.self) {index in
-                themeAdjust(to: themes[index], emoji: themes[index][0], name: theme_names[index])
+                themeAdjust(to: themes[index], icon: theme_symbols[index], name: theme_names[index], th_color: theme_colors[index])
                 Spacer()
             }
         }
     }
     
-    func themeAdjust(to array: Array<String>, emoji: String, name: String) -> some View {
+    func themeAdjust(to array: Array<String>, icon: String, name: String, th_color: Color) -> some View {
         Button(action: {
             if cardCount > array.count {
                 cardCount = array.count
             }
             emojis = array.shuffled()
+            color = th_color
         }, label: {
             ZStack {
                 let base = RoundedRectangle(cornerRadius: 12)
                 base.frame(width: 60, height: 60)
                 VStack {
-                    Text(emoji)
+                    Image(systemName: icon)
                         .font(.body)
+                        .foregroundStyle(.white)
                     Text(name)
                         .font(.footnote)
                         .foregroundStyle(.white)
@@ -83,7 +90,7 @@ struct ContentView: View {
                     .aspectRatio(2/3, contentMode: .fit)
             }
         }
-        .foregroundColor(.orange)
+        .foregroundColor(color)
     }
     
     func cardCountAdjuster(by offset: Int, symbol: String) -> some View {
@@ -107,7 +114,7 @@ struct ContentView: View {
 
 struct CardView: View {
     let content: String
-    @State var isFaceUp = true
+    @State var isFaceUp = false
     var body: some View {
         ZStack {
             let base = RoundedRectangle(cornerRadius: 12)
