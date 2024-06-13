@@ -8,17 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var emojis = ["😡", "☺️", "😭", "🫢", "🫡", "🥸", "🤩", "😇", "🥶", "🤠", "🫠", "🤯"]
+    @State var emojis = ["😀", "😀", "☺️", "☺️", "😡", "😡", "🫡", "🫡", "😭", "😭", "🥸", "🥸", "🫢", "🫢", "😆", "😆"].shuffled()
     
-    let emojis_regular = ["😡", "☺️", "😭", "🫢", "🫡", "🥸", "🤩", "😇", "🥶", "🤠", "🫠", "🤯"]
-
-    let emojis_halloween = ["👻", "🎃", "😈", "☠️", "🧙", "👽", "🤖"]
+    let themes = [["😀", "😀", "☺️", "☺️", "😡", "😡", "🫡", "🫡", "😭", "😭", "🥸", "🥸", "🫢", "🫢", "😆", "😆"],
+                  ["🎃", "🎃", "👻", "👻", "🧙", "🧙", "😈", "😈", "☠️", "☠️", "👽", "👽", "👹", "👹"],
+                  ["🐹", "🐹", "🐱", "🐱", "🐶", "🐶", "🐭", "🐭", "🐰", "🐰", "🦊", "🦊"]]
     
-    let emojis_animals = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐻‍❄️", "🐨", "🐯", "🦁"]
+    let theme_names = ["Faces", "Scary", "Animals"]
     
-    let themes = [["😡", "☺️", "😭", "🫢", "🫡", "🥸", "🤩", "😇", "🥶", "🤠", "🫠", "🤯"], ["👻", "🎃", "😈", "☠️", "🧙", "👽", "🤖"], ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐻‍❄️", "🐨", "🐯", "🦁"]]
-    
-    @State var cardCount: Int = 4
+    @State var cardCount: Int = 12
     
     var body: some View {
         VStack {
@@ -40,21 +38,29 @@ struct ContentView: View {
         HStack {
             Spacer()
             ForEach(0..<themes.count, id: \.self) {index in
-                themeAdjust(to: themes[index], emoji: themes[index][0])
+                themeAdjust(to: themes[index], emoji: themes[index][0], name: theme_names[index])
                 Spacer()
             }
-            .font(.largeTitle)
         }
     }
     
-    func themeAdjust(to array: Array<String>, emoji: String) -> some View {
+    func themeAdjust(to array: Array<String>, emoji: String, name: String) -> some View {
         Button(action: {
-            emojis = array
+            if cardCount > array.count {
+                cardCount = array.count
+            }
+            emojis = array.shuffled()
         }, label: {
             ZStack {
                 let base = RoundedRectangle(cornerRadius: 12)
-                base.frame(width: 50, height: 50)
-                Text(emoji)
+                base.frame(width: 60, height: 60)
+                VStack {
+                    Text(emoji)
+                        .font(.body)
+                    Text(name)
+                        .font(.footnote)
+                        .foregroundStyle(.white)
+                }
             }
         })
     }
