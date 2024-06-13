@@ -8,12 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    let emojis = ["😡", "☺️", "😭", "🫢", "🫡", "🥸", "🤩", "😇", "🥶", "🤠", "🫠", "🤯"]
+    @State var emojis = ["😡", "☺️", "😭", "🫢", "🫡", "🥸", "🤩", "😇", "🥶", "🤠", "🫠", "🤯"]
+    
+    let emojis_regular = ["😡", "☺️", "😭", "🫢", "🫡", "🥸", "🤩", "😇", "🥶", "🤠", "🫠", "🤯"]
+
+    let emojis_halloween = ["👻", "🎃", "😈", "☠️", "🧙", "👽", "🤖"]
+    
+    let emojis_animals = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐻‍❄️", "🐨", "🐯", "🦁"]
+    
+    let themes = [["😡", "☺️", "😭", "🫢", "🫡", "🥸", "🤩", "😇", "🥶", "🤠", "🫠", "🤯"], ["👻", "🎃", "😈", "☠️", "🧙", "👽", "🤖"], ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐻‍❄️", "🐨", "🐯", "🦁"]]
     
     @State var cardCount: Int = 4
     
     var body: some View {
         VStack {
+            title
             ScrollView {
                 cards
             }
@@ -23,13 +32,41 @@ struct ContentView: View {
         .padding()
     }
     
+    var title: some View {
+        Text("Memorize!").font(.largeTitle)
+    }
+    
+    var cardThemeAdjusters: some View {
+        HStack {
+            Spacer()
+            ForEach(0..<themes.count, id: \.self) {index in
+                themeAdjust(to: themes[index], emoji: themes[index][0])
+                Spacer()
+            }
+            .font(.largeTitle)
+        }
+    }
+    
+    func themeAdjust(to array: Array<String>, emoji: String) -> some View {
+        Button(action: {
+            emojis = array
+        }, label: {
+            ZStack {
+                let base = RoundedRectangle(cornerRadius: 12)
+                base.frame(width: 50, height: 50)
+                Text(emoji)
+            }
+        })
+    }
+    
     var cardCountAdjusters: some View {
         HStack {
             cardRemover
             Spacer()
+            cardThemeAdjusters
             cardAdder
         }
-        .imageScale(.large)
+        //.imageScale(.large)
         .font(.largeTitle)
     }
     
