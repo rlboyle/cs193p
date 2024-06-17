@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  EmojiMemoryGameView.swift
 //  Memorize
 //
 //  Created by Ryan Boyle on 6/11/24.
@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct EmojiMemoryGameView: View {
+    var viewModel: EmojiMemoryGame
+    
     @State var emojis = [""]
     
     @State var color: Color = .blue
@@ -21,7 +23,7 @@ struct ContentView: View {
     let theme_colors: [Color] = [.blue, .orange, .green]
     
     
-    @State var cardCount = 0
+//    @State var cardCount = 0
     
     var body: some View {
         VStack {
@@ -51,8 +53,8 @@ struct ContentView: View {
     
     func themeAdjust(to array: Array<String>, icon: String, name: String, th_color: Color) -> some View {
         Button(action: {
-            var random = 2*Int.random(in: 2..<array.count/2)
-            cardCount = random
+            let random = 2*Int.random(in: 2..<array.count/2)
+//            cardCount = random
             emojis = Array(array[0..<random]).shuffled()
             color = th_color
         }, label: {
@@ -84,10 +86,12 @@ struct ContentView: View {
     }
     
     var cards: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: bestWidth(numCards: cardCount), maximum: bestWidth(numCards: cardCount)))]) {
-            ForEach(0..<cardCount, id: \.self) {index in
-                CardView(content: emojis[index])
-                    .aspectRatio(2/3, contentMode: .fit)
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: bestWidth(numCards: emojis.count), maximum: bestWidth(numCards: emojis.count)))]) {
+            if emojis.count > 1 {
+                ForEach(emojis.indices, id: \.self) {index in
+                    CardView(content: emojis[index])
+                        .aspectRatio(2/3, contentMode: .fit)
+                }
             }
         }
         .foregroundColor(color)
@@ -96,20 +100,17 @@ struct ContentView: View {
 }
 
 struct CardView: View {
-    let content: String
-    @State var isFaceUp = true
+    let card: MemoryGame<String>.Card
     var body: some View {
         ZStack {
             let base = RoundedRectangle(cornerRadius: 12)
             Group {
                 base.fill(.white)
                 base.strokeBorder(lineWidth: 2)
-                Text(content).font(.largeTitle)
+                Text(card.content).font(.largeTitle)
             }
-            .opacity(isFaceUp ? 1 : 0)
-            base.fill().opacity(isFaceUp ? 0 : 1)
-        }.onTapGesture {
-            isFaceUp.toggle()
+            .opacity(card.isFaceUp ? 1 : 0)
+            base.fill().opacity(card.isFaceUp ? 0 : 1)
         }
     }
 }
@@ -121,5 +122,5 @@ struct CardView: View {
 
 
 #Preview {
-    ContentView()
+    EmojiMemoryGameView()
 }
