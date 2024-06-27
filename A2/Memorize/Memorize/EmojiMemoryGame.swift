@@ -64,4 +64,8 @@ class EmojiMemoryGame: ObservableObject {
         return nil
     }
     
+    func score() -> Int {
+        return model.score
+    }
+    
 }

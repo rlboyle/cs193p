@@ -24,6 +24,8 @@ struct EmojiMemoryGameView: View {
                     viewModel.reset()
                 }
                 Spacer()
+                Text("Score: \(viewModel.score())")
+                Spacer()
                 Button("Shuffle") {
                     viewModel.shuffle()
                 }
