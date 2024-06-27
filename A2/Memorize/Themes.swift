@@ -5,7 +5,7 @@
 //  Created by Ryan Boyle on 6/27/24.
 //
 
-import SwiftUI
+import Foundation
 
 struct Theme {
     var name: String

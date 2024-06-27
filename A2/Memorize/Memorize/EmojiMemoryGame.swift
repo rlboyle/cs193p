@@ -10,6 +10,10 @@ import SwiftUI
 
 class EmojiMemoryGame: ObservableObject {
     
+    let colorChoices: [String:Color] = ["orange": Color(.orange),
+                                        "blue": Color(.blue)
+                                        ]
+    
     private static var currentTheme: Theme?
         
     private static func createMemoryGame() -> MemoryGame<String> {
@@ -51,6 +55,13 @@ class EmojiMemoryGame: ObservableObject {
             return theme.name
         }
         return ""
+    }
+    
+    func themeColor() -> Color? {
+        if let theme = EmojiMemoryGame.currentTheme {
+            return colorChoices[theme.color]
+        }
+        return nil
     }
     
 }
