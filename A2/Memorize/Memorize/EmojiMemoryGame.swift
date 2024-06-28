@@ -11,7 +11,13 @@ import SwiftUI
 class EmojiMemoryGame: ObservableObject {
     
     let colorChoices: [String:Color] = ["orange": Color(.orange),
-                                        "blue": Color(.blue)
+                                        "blue": Color(.blue),
+                                        "green": Color(.green),
+                                        "purple": Color(.purple),
+                                        "red": Color(.red),
+                                        "yellow": Color(.yellow),
+                                        "brown": Color(.brown),
+                                        "black": Color(.black),
                                         ]
     
     private static var currentTheme: Theme?
