@@ -8,10 +8,10 @@
 import Foundation
 
 struct Theme {
-    var name: String
-    var color: String
-    var numberOfPairsOfCards: Int
-    var emojis: [String]
+    let name: String
+    let color: String
+    let numberOfPairsOfCards: Int?
+    let emojis: [String]
 }
 
 let themes: Array<Theme> = [
@@ -35,12 +35,12 @@ Theme(name: "Animals",
 
 Theme(name: "People",
       color: "red",
-      numberOfPairsOfCards: 10,
+      numberOfPairsOfCards: nil,
       emojis: ["👮‍♀️", "👷‍♀️", "💂‍♀️", "👩‍⚕️", "👩‍🌾", "👨‍🍳", "🧑‍🎓", "👩‍🎤", "🧑‍🏫", "👩‍💼", "🧑‍🔬", "🧑‍🚒"]),
 
 Theme(name: "Flags", 
       color: "purple",
-      numberOfPairsOfCards: 3,
+      numberOfPairsOfCards: 4,
       emojis: ["🇦🇫", "🇦🇽", "🇩🇿", "🇦🇺", "🇧🇩"]),
 
 Theme(name: "Food",

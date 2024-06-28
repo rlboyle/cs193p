@@ -26,7 +26,12 @@ class EmojiMemoryGame: ObservableObject {
         if let theme = themes.randomElement() {
             EmojiMemoryGame.currentTheme = theme
             let emojis = theme.emojis.shuffled()
-            return MemoryGame(numberOfPairsOfCards: theme.numberOfPairsOfCards) {pairIndex in
+            var numberOfPairsToDisplay = Int.random(in: 2..<emojis.count)
+            if let givenNumPairs = theme.numberOfPairsOfCards {
+                if givenNumPairs > emojis.count { numberOfPairsToDisplay = emojis.count }
+                if givenNumPairs < 2 { numberOfPairsToDisplay = 2}
+            }
+            return MemoryGame(numberOfPairsOfCards: numberOfPairsToDisplay) {pairIndex in
                 if emojis.indices.contains(pairIndex) {
                     return emojis[pairIndex]
                 } else {
