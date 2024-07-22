@@ -7,6 +7,16 @@
 
 import Foundation
 
-struct SetGame {
+struct SetGame<CardSymbol> {
+    
+    func choose(_ card: Card) {
+        
+    }
+    
+    struct Card {
+        var symbol: CardSymbol
+        var isMatched: Bool = false
+        var inPlay: Bool = false
+    }
     
 }

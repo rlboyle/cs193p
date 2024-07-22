@@ -9,7 +9,7 @@ import SwiftUI
 
 class ColorfulSetGame: ObservableObject {
     
-    private static func createSetGame() -> SetGame {
+    private static func createSetGame() -> SetGame<String> {
         return SetGame()
     }
     
