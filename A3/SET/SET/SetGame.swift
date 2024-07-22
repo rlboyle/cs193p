@@ -20,7 +20,7 @@ struct SetGame<CardSymbol> {
             deck.append(Card(symbol: cardSymbol))
         }
         deck.shuffle()
-        for index in 0..<numberOfCardsToShow {
+        for _ in 0..<numberOfCardsToShow {
             if let cardToPlay = deck.popLast() {
                 cardsInPlay.append(cardToPlay)
             }
@@ -32,7 +32,7 @@ struct SetGame<CardSymbol> {
     }
     
     struct Card {
-        var symbol: CardSymbol
+        let symbol: CardSymbol
         var isMatched: Bool = false
     }
     
