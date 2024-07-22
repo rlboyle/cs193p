@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  ColorfulSetGameView.swift
 //  SET
 //
 //  Created by Ryan Boyle on 7/11/24.
@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ColorfulSetGameView: View {
+    
+    @ObservedObject var viewModel: ColorfulSetGame
+    
     var body: some View {
         VStack {
             Text("SET!")
@@ -25,5 +28,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ColorfulSetGameView(viewModel:  ColorfulSetGame())
 }
