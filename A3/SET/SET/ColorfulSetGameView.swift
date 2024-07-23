@@ -16,23 +16,38 @@ struct ColorfulSetGameView: View {
             Text("SET!")
                 .font(.largeTitle)
                 .bold()
-            ScrollView {
-                
-            }
+            cards
             Button("Deal Three More Cards") {
                 
             }
         }
         .padding()
     }
+    
+    var cards: some View {
+        AspectVGrid(viewModel.cardsInPlay, aspectRatio: 2/3) {card in
+            CardView(card)
+        }
+    }
+    
 }
 
 struct CardView: View {
     let card: ColorfulSetGame.Card
     
+    init(_ card: ColorfulSetGame.Card) {
+        self.card = card
+    }
+    
     @ViewBuilder var drawableCardSymbol: some View {
-        var shape = card.symbol.drawableShape()
-        shape = card.symbol.applyColor(to: shape)
+        let shape = card.symbol.drawableShape()
+            .foregroundStyle(card.symbol.getColor())
+        HStack {
+            ForEach(0..<card.symbol.numberOfShapesToMake(), id: \.self) {_ in
+                shape
+                    .padding(1)
+            }
+        }
     }
     
     var body: some View {
@@ -42,6 +57,7 @@ struct CardView: View {
                 base.fill(.white)
                 base.strokeBorder(lineWidth: 2)
             }
+            drawableCardSymbol
         }
     }
     

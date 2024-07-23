@@ -7,6 +7,16 @@
 
 import SwiftUI
 
+extension Shape {
+    @ViewBuilder func applyShading(_ shading: ColorfulSetGame.SymbolShadings) -> some View {
+        switch shading {
+        case .empty: self.stroke(lineWidth: 4)
+        case .solid: self.opacity(1)
+        case .striped: self.opacity(0.4)
+        }
+    }
+}
+
 class ColorfulSetGame: ObservableObject {
     
     
@@ -22,7 +32,7 @@ class ColorfulSetGame: ObservableObject {
             for symbolShape in SymbolShapes.allCases {
                 for symbolQuantity in SymbolQuantities.allCases {
                     for symbolShading in SymbolShadings.allCases {
-                        symbols.append(Symbol(color: symbolColor, shape: symbolShape, Quantity: symbolQuantity, shading: symbolShading))
+                        symbols.append(Symbol(color: symbolColor, shape: symbolShape, quantity: symbolQuantity, shading: symbolShading))
                         numberOfCardsInDeck += 1
                     }
                 }
@@ -48,38 +58,22 @@ class ColorfulSetGame: ObservableObject {
         let shading: SymbolShadings
         
         @ViewBuilder func drawableShape() -> some View {
-            var shapeToDraw: View
             switch self.shape {
-            case .squiggle: shapeToDraw = Rectangle()
-            case .diamond: shapeToDraw = Circle()
-            case .oval: shapeToDraw = Ellipse()
+            case .squiggle: Rectangle().applyShading(self.shading)
+            case .diamond: Circle().applyShading(self.shading)
+            case .oval: Ellipse().applyShading(self.shading)
             }
-            
+        }
+        
+        func getColor() -> Color {
             switch self.color {
-            case .red: shape.foregroundColor(.red)
-            case .green: shape.foregroundColor(.green)
-            case .blue: shape.foregroundColor(.blue)
-            }
-            
-        }
-        
-        func applyColor(to shape: some View) -> some View {
-            switch self.color {
-            case .red: shape.foregroundColor(.red)
-            case .green: shape.foregroundColor(.green)
-            case .blue: shape.foregroundColor(.blue)
+            case .red: .red
+            case .green: .green
+            case .blue: .blue
             }
         }
         
-        @ViewBuilder func applyShading(to shape: some Shape) -> some View {
-            switch self.shading {
-            case .empty: shape.stroke(lineWidth: 2)
-            case .solid: shape
-            case .striped: shape.opacity(0.3)
-            }
-        }
-        
-        func numberOfShapesToMake(_ shape: some Shape) -> Int {
+        func numberOfShapesToMake() -> Int {
             switch self.quantity {
             case .one: 1
             case .two: 2

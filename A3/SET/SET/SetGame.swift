@@ -17,7 +17,7 @@ struct SetGame<CardSymbol> {
         cardsInPlay = []
         for cardIndex in 0..<totalNumberOfCards {
             let cardSymbol = cardContentFactory(cardIndex)
-            deck.append(Card(symbol: cardSymbol))
+            deck.append(Card(symbol: cardSymbol, id: cardIndex))
         }
         deck.shuffle()
         for _ in 0..<numberOfCardsToShow {
@@ -31,8 +31,9 @@ struct SetGame<CardSymbol> {
         
     }
     
-    struct Card {
+    struct Card: Identifiable {
         let symbol: CardSymbol
+        var id: Int
         var isMatched: Bool = false
     }
     
