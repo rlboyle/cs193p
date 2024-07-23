@@ -33,7 +33,7 @@ class ColorfulSetGame: ObservableObject {
         }
     }
     
-    func cardsInPlay() -> [Card] {
+    var cardsInPlay: [Card] {
         return model.cardsInPlay
     }
     
@@ -44,8 +44,55 @@ class ColorfulSetGame: ObservableObject {
     struct Symbol {
         let color: SymbolColors
         let shape: SymbolShapes
-        let Quantity: SymbolQuantities
+        let quantity: SymbolQuantities
         let shading: SymbolShadings
+        
+        @ViewBuilder func drawableShape() -> some View {
+            var shapeToDraw: View
+            switch self.shape {
+            case .squiggle: shapeToDraw = Rectangle()
+            case .diamond: shapeToDraw = Circle()
+            case .oval: shapeToDraw = Ellipse()
+            }
+            
+            switch self.color {
+            case .red: shape.foregroundColor(.red)
+            case .green: shape.foregroundColor(.green)
+            case .blue: shape.foregroundColor(.blue)
+            }
+            
+        }
+        
+        func applyColor(to shape: some View) -> some View {
+            switch self.color {
+            case .red: shape.foregroundColor(.red)
+            case .green: shape.foregroundColor(.green)
+            case .blue: shape.foregroundColor(.blue)
+            }
+        }
+        
+        @ViewBuilder func applyShading(to shape: some Shape) -> some View {
+            switch self.shading {
+            case .empty: shape.stroke(lineWidth: 2)
+            case .solid: shape
+            case .striped: shape.opacity(0.3)
+            }
+        }
+        
+        func numberOfShapesToMake(_ shape: some Shape) -> Int {
+            switch self.quantity {
+            case .one: 1
+            case .two: 2
+            case .three: 3
+            }
+        }
+        
+    }
+    
+    enum SymbolShapes: CaseIterable {
+        case squiggle
+        case diamond
+        case oval
     }
     
     enum SymbolColors: CaseIterable {
@@ -54,22 +101,16 @@ class ColorfulSetGame: ObservableObject {
         case blue
     }
     
-    enum SymbolShapes: CaseIterable {
-        case rectange
-        case diamond
-        case oval
+    enum SymbolShadings: CaseIterable {
+        case empty
+        case striped
+        case solid
     }
     
     enum SymbolQuantities: CaseIterable {
         case one
         case two
         case three
-    }
-    
-    enum SymbolShadings: CaseIterable {
-        case empty
-        case striped
-        case solid
     }
     
 }

@@ -27,6 +27,27 @@ struct ColorfulSetGameView: View {
     }
 }
 
+struct CardView: View {
+    let card: ColorfulSetGame.Card
+    
+    @ViewBuilder var drawableCardSymbol: some View {
+        var shape = card.symbol.drawableShape()
+        shape = card.symbol.applyColor(to: shape)
+    }
+    
+    var body: some View {
+        ZStack {
+            let base = RoundedRectangle(cornerRadius: 12)
+            Group {
+                base.fill(.white)
+                base.strokeBorder(lineWidth: 2)
+            }
+        }
+    }
+    
+    
+}
+
 #Preview {
     ColorfulSetGameView(viewModel:  ColorfulSetGame())
 }
