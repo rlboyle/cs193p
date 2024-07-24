@@ -39,9 +39,9 @@ struct CardView: View {
     let card: ColorfulSetGame.Card
     
     var borderColor: Color {
-        if card.isMatched {
+        if card.card.isMatched {
             .green
-        } else if card.isSelected {
+        } else if card.card.isSelected {
             .red
         } else {
             .black

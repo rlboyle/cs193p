@@ -8,30 +8,33 @@
 import SwiftUI
 
 extension Shape {
-    @ViewBuilder func applyShading(_ shading: Symbol.SymbolShadings) -> some View {
+    @ViewBuilder func applyShading(_ shading: Symbol.SymbolFeature) -> some View {
         switch shading {
-        case .empty: self.stroke(lineWidth: 4)
-        case .solid: self.opacity(1)
-        case .striped: self.opacity(0.4)
+        case .one: self.stroke(lineWidth: 4)
+        case .two: self.opacity(1)
+        case .three: self.opacity(0.4)
         }
     }
 }
 
 struct Symbol {
-    let color: SymbolColors
-    let shape: SymbolShapes
-    let quantity: SymbolQuantities
-    let shading: SymbolShadings
+    
+    typealias Game = SetGame<Symbol.SymbolFeature>
+    
+    let color: SymbolFeature
+    let shape: SymbolFeature
+    let quantity: SymbolFeature
+    let shading: SymbolFeature
     
     @ViewBuilder func drawableShape(aspectRatio: CGFloat) -> some View {
         switch self.shape {
-        case .squiggle: Rectangle()
+        case .one: Rectangle()
                 .applyShading(self.shading)
                 .aspectRatio(aspectRatio, contentMode: .fit)
-        case .diamond: Diamond()
+        case .two: Diamond()
                 .applyShading(self.shading)
                 .aspectRatio(aspectRatio, contentMode: .fit)
-        case .oval: Ellipse()
+        case .three: Ellipse()
                 .applyShading(self.shading)
                 .aspectRatio(aspectRatio, contentMode: .fit)
         }
@@ -39,9 +42,9 @@ struct Symbol {
     
     func getColor() -> Color {
         switch self.color {
-        case .red: .red
-        case .green: .green
-        case .blue: .blue
+        case .one: .red
+        case .two: .green
+        case .three: .blue
         }
     }
     
@@ -53,25 +56,7 @@ struct Symbol {
         }
     }
     
-    enum SymbolShapes: CaseIterable {
-        case squiggle
-        case diamond
-        case oval
-    }
-
-    enum SymbolColors: CaseIterable {
-        case red
-        case green
-        case blue
-    }
-
-    enum SymbolShadings: CaseIterable {
-        case empty
-        case striped
-        case solid
-    }
-
-    enum SymbolQuantities: CaseIterable {
+    enum SymbolFeature: CaseIterable {
         case one
         case two
         case three

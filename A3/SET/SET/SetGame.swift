@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct SetGame<CardSymbol> {
+struct SetGame<Feature: Equatable> {
     
     private(set) var deck: [Card]
     private(set) var cardsInPlay: [Card]
+    
     
     init(totalNumberOfCards: Int, numberOfCardsToShow: Int, cardContentFactory: (Int) -> CardSymbol) {
         deck = []
@@ -50,6 +51,13 @@ struct SetGame<CardSymbol> {
         var id: Int
         var isMatched = false
         var isSelected = false
+    }
+    
+    struct CardSymbol {
+        let feature1: Feature
+        let feature2: Feature
+        let feature3: Feature
+        let feature4: Feature
     }
     
 }
