@@ -25,7 +25,7 @@ struct ColorfulSetGameView: View {
     }
     
     var cards: some View {
-        AspectVGrid(viewModel.cardsInPlay, aspectRatio: 2/3) {card in
+        AspectVGrid(viewModel.cardsInPlay, aspectRatio: 3/2) {card in
             CardView(card)
         }
     }
@@ -45,7 +45,7 @@ struct CardView: View {
         HStack {
             ForEach(0..<card.symbol.numberOfShapesToMake(), id: \.self) {_ in
                 shape
-                    .padding(1)
+                    .padding(6)
             }
         }
     }
