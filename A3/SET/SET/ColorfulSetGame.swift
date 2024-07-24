@@ -41,4 +41,8 @@ class ColorfulSetGame: ObservableObject {
         model.choose(card)
     }
     
+    func dealThreeMoreCards() {
+        model.dealThreeMoreCards()
+    }
+    
 }

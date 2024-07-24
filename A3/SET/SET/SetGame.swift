@@ -31,6 +31,14 @@ struct SetGame<CardSymbol> {
         
     }
     
+    mutating func dealThreeMoreCards() {
+        for _ in 0..<3 {
+            if let cardToDeal = deck.popLast() {
+                cardsInPlay.append(cardToDeal)
+            }
+        }
+    }
+    
     struct Card: Identifiable {
         let symbol: CardSymbol
         var id: Int

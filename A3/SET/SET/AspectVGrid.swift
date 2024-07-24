@@ -25,11 +25,13 @@ struct AspectVGrid<Item: Identifiable, ItemView: View>: View {
                 size: geometry.size,
                 atAspectRatio: aspectRatio
             )
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: gridItemSize), spacing: 0)], spacing: 0) {
-                ForEach(items) { item in
-                    content(item)
-                        .aspectRatio(aspectRatio, contentMode: .fit)
-                        .padding(4)
+            ScrollView {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: max(gridItemSize, 80)), spacing: 0)], spacing: 0) {
+                    ForEach(items) { item in
+                        content(item)
+                            .aspectRatio(aspectRatio, contentMode: .fit)
+                            .padding(4)
+                    }
                 }
             }
         }

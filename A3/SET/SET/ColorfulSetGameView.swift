@@ -18,7 +18,7 @@ struct ColorfulSetGameView: View {
                 .bold()
             cards
             Button("Deal Three More Cards") {
-                
+                viewModel.dealThreeMoreCards()
             }
         }
         .padding()
