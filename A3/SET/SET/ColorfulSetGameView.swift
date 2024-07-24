@@ -52,17 +52,6 @@ struct CardView: View {
         self.card = card
     }
     
-    @ViewBuilder func drawableCardSymbol(aspectRatio: CGFloat) -> some View {
-        let shape = card.symbol.drawableShape(aspectRatio: aspectRatio)
-            .foregroundStyle(card.symbol.getColor())
-        HStack {
-            ForEach(0..<card.symbol.numberOfShapesToMake(), id: \.self) {_ in
-                shape
-            }
-        }
-        .padding()
-    }
-    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -78,7 +67,17 @@ struct CardView: View {
         }
     }
     
-    
+    @ViewBuilder func drawableCardSymbol(aspectRatio: CGFloat) -> some View {
+        let shape = card.symbol.drawableShape(aspectRatio: aspectRatio)
+            .foregroundStyle(card.symbol.getColor())
+        HStack {
+            ForEach(0..<card.symbol.numberOfShapesToMake(), id: \.self) {_ in
+                shape
+            }
+        }
+        .padding()
+    }
+
 }
 
 #Preview {

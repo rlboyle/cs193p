@@ -9,8 +9,11 @@ import Foundation
 
 struct SetGame<Feature: Equatable> {
     
+    typealias CardSymbol = [Feature]
+    
     private(set) var deck: [Card]
     private(set) var cardsInPlay: [Card]
+    private(set) var cardsCurrentlySelected = 0
     
     
     init(totalNumberOfCards: Int, numberOfCardsToShow: Int, cardContentFactory: (Int) -> CardSymbol) {
@@ -34,7 +37,15 @@ struct SetGame<Feature: Equatable> {
     
     mutating func choose(_ card: Card) {
         if let chosenIndex = cardsInPlay.firstIndex(where: {$0.id == card.id}) {
-            cardsInPlay[chosenIndex].isSelected.toggle()
+            if cardsInPlay[chosenIndex].isSelected {
+                cardsInPlay[chosenIndex].isSelected = false
+                cardsCurrentlySelected -= 1
+            } else {
+                cardsInPlay[chosenIndex].isSelected = true
+                cardsCurrentlySelected += 1
+            }
+            
+        
         }
     }
     
@@ -46,18 +57,21 @@ struct SetGame<Feature: Equatable> {
         }
     }
     
+    func match(card1: Card, card2: Card, card3: Card) -> Bool {
+        for index in 0..<card1.symbol.count {
+            if !((card1.symbol[index] == card2.symbol[index] && card2.symbol[index] == card3.symbol[index] && card1.symbol[index] == card3.symbol[index])
+            || (card1.symbol[index] != card2.symbol[index] && card2.symbol[index] != card3.symbol[index] && card1.symbol[index] != card3.symbol[index])){
+                return false
+            }
+        }
+        return true
+    }
+    
     struct Card: Identifiable {
-        let symbol: CardSymbol
+        let symbol: [Feature]
         var id: Int
         var isMatched = false
         var isSelected = false
-    }
-    
-    struct CardSymbol {
-        let feature1: Feature
-        let feature2: Feature
-        let feature3: Feature
-        let feature4: Feature
     }
     
 }

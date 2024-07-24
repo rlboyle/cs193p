@@ -21,7 +21,7 @@ class ColorfulSetGame: ObservableObject {
             for symbolShape in Symbol.SymbolFeature.allCases {
                 for symbolQuantity in Symbol.SymbolFeature.allCases {
                     for symbolShading in Symbol.SymbolFeature.allCases {
-                        symbols.append(Game.CardSymbol(feature1: symbolColor, feature2: symbolShape, feature3: symbolQuantity, feature4: symbolShading))
+                        symbols.append([symbolColor, symbolShape, symbolQuantity, symbolShading])
                         numberOfCardsInDeck += 1
                     }
                 }
@@ -56,10 +56,10 @@ class ColorfulSetGame: ObservableObject {
         init(_ card: Game.Card) {
             self.card = card
             self.id = card.id
-            self.symbol = Symbol(color: card.symbol.feature1,
-                                 shape: card.symbol.feature2,
-                                 quantity: card.symbol.feature3,
-                                 shading: card.symbol.feature4)
+            self.symbol = Symbol(color: card.symbol[0],
+                                 shape: card.symbol[1],
+                                 quantity: card.symbol[2],
+                                 shading: card.symbol[3])
         }
         
     }
