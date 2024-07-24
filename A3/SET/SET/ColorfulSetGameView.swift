@@ -39,28 +39,28 @@ struct CardView: View {
         self.card = card
     }
     
-    @ViewBuilder var drawableCardSymbol: some View {
-        GeometryReader { geometry in
-            let aspectRatio = (geometry.size.width/geometry.size.height)/3
-            let shape = card.symbol.drawableShape(aspectRatio: aspectRatio)
-                .foregroundStyle(card.symbol.getColor())
-            HStack {
-                ForEach(0..<card.symbol.numberOfShapesToMake(), id: \.self) {_ in
-                    shape
-                }
+    @ViewBuilder func drawableCardSymbol(aspectRatio: CGFloat) -> some View {
+        let shape = card.symbol.drawableShape(aspectRatio: aspectRatio)
+            .foregroundStyle(card.symbol.getColor())
+        HStack {
+            ForEach(0..<card.symbol.numberOfShapesToMake(), id: \.self) {_ in
+                shape
             }
-            .padding()
         }
+        .padding()
     }
     
     var body: some View {
-        ZStack {
-            let base = RoundedRectangle(cornerRadius: 12)
-            Group {
-                base.fill(.white)
-                base.strokeBorder(lineWidth: 2)
+        GeometryReader { geometry in
+            ZStack {
+                let aspectRatio = (geometry.size.width/geometry.size.height)/3
+                let base = RoundedRectangle(cornerRadius: 12)
+                Group {
+                    base.fill(.white)
+                    base.strokeBorder(lineWidth: 2)
+                }
+                drawableCardSymbol(aspectRatio: aspectRatio)
             }
-            drawableCardSymbol
         }
     }
     
