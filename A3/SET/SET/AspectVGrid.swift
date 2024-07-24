@@ -20,7 +20,6 @@ struct AspectVGrid<Item: Identifiable, ItemView: View>: View {
     
     var body: some View {
         GeometryReader { geometry in
-//            let gridItemSize = 85.0
             let gridItemSize = gridItemWidthThatFits(
                 count: items.count,
                 size: geometry.size,

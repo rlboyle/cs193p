@@ -40,13 +40,16 @@ struct CardView: View {
     }
     
     @ViewBuilder var drawableCardSymbol: some View {
-        let shape = card.symbol.drawableShape()
-            .foregroundStyle(card.symbol.getColor())
-        HStack {
-            ForEach(0..<card.symbol.numberOfShapesToMake(), id: \.self) {_ in
-                shape
-                    .padding(6)
+        GeometryReader { geometry in
+            let aspectRatio = (geometry.size.width/geometry.size.height)/3
+            let shape = card.symbol.drawableShape(aspectRatio: aspectRatio)
+                .foregroundStyle(card.symbol.getColor())
+            HStack {
+                ForEach(0..<card.symbol.numberOfShapesToMake(), id: \.self) {_ in
+                    shape
+                }
             }
+            .padding()
         }
     }
     

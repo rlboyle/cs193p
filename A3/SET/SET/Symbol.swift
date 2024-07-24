@@ -23,11 +23,17 @@ struct Symbol {
     let quantity: SymbolQuantities
     let shading: SymbolShadings
     
-    @ViewBuilder func drawableShape() -> some View {
+    @ViewBuilder func drawableShape(aspectRatio: CGFloat) -> some View {
         switch self.shape {
-        case .squiggle: Rectangle().applyShading(self.shading)
-        case .diamond: Diamond().applyShading(self.shading)
-        case .oval: Ellipse().applyShading(self.shading)
+        case .squiggle: Rectangle()
+                .applyShading(self.shading)
+                .aspectRatio(aspectRatio, contentMode: .fit)
+        case .diamond: Diamond()
+                .applyShading(self.shading)
+                .aspectRatio(aspectRatio, contentMode: .fit)
+        case .oval: Ellipse()
+                .applyShading(self.shading)
+                .aspectRatio(aspectRatio, contentMode: .fit)
         }
     }
     
