@@ -27,8 +27,14 @@ struct SetGame<CardSymbol> {
         }
     }
     
-    func choose(_ card: Card) {
-        
+    private func matchCheck(card1: Card, card2: Card, card3: Card) -> Bool {
+        return true
+    }
+    
+    mutating func choose(_ card: Card) {
+        if let chosenIndex = cardsInPlay.firstIndex(where: {$0.id == card.id}) {
+            cardsInPlay[chosenIndex].isSelected.toggle()
+        }
     }
     
     mutating func dealThreeMoreCards() {
@@ -42,7 +48,8 @@ struct SetGame<CardSymbol> {
     struct Card: Identifiable {
         let symbol: CardSymbol
         var id: Int
-        var isMatched: Bool = false
+        var isMatched = false
+        var isSelected = false
     }
     
 }

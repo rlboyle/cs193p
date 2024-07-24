@@ -24,3 +24,7 @@ struct Diamond: Shape {
         return p
     }
 }
+
+#Preview {
+    Diamond()
+}

@@ -27,6 +27,9 @@ struct ColorfulSetGameView: View {
     var cards: some View {
         AspectVGrid(viewModel.cardsInPlay, aspectRatio: 3/2) {card in
             CardView(card)
+                .onTapGesture {
+                    viewModel.choose(card)
+                }
         }
     }
     
@@ -34,6 +37,16 @@ struct ColorfulSetGameView: View {
 
 struct CardView: View {
     let card: ColorfulSetGame.Card
+    
+    var borderColor: Color {
+        if card.isMatched {
+            .green
+        } else if card.isSelected {
+            .red
+        } else {
+            .black
+        }
+    }
     
     init(_ card: ColorfulSetGame.Card) {
         self.card = card
@@ -55,10 +68,11 @@ struct CardView: View {
             ZStack {
                 let aspectRatio = (geometry.size.width/geometry.size.height)/3
                 let base = RoundedRectangle(cornerRadius: 12)
-                Group {
-                    base.fill(.white)
-                    base.strokeBorder(lineWidth: 2)
-                }
+                    base.strokeBorder(lineWidth: 3)
+                    .foregroundStyle(borderColor)
+                        .background(
+                            base.fill(.white)
+                        )
                 drawableCardSymbol(aspectRatio: aspectRatio)
             }
         }
