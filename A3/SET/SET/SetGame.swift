@@ -150,9 +150,17 @@ struct SetGame<Feature: Equatable> {
     }
     
     mutating func dealThreeMoreCards() {
-        for _ in 0..<3 {
-            if let cardToDeal = deck.popLast() {
-                cardsInPlay.append(cardToDeal)
+        if matchPresent {
+            for card in selectedCards {
+                if let cardToDeal = deck.popLast() {
+                    replaceCard(card, with: cardToDeal)
+                }
+            }
+        } else {
+            for _ in 0..<3 {
+                if let cardToDeal = deck.popLast() {
+                    cardsInPlay.append(cardToDeal)
+                }
             }
         }
     }

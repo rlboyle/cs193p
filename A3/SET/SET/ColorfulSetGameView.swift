@@ -13,13 +13,25 @@ struct ColorfulSetGameView: View {
     
     var body: some View {
         VStack {
-            Text("SET!")
-                .font(.largeTitle)
-                .bold()
+            ZStack {
+                Text("SET!")
+                    .font(.largeTitle)
+                    .bold()
+                    .frame(alignment: .center)
+                HStack {
+                    Spacer()
+                    Button("New Game") {
+                        viewModel.newGame()
+                    }
+                }
+            }
             cards
-            Button("Deal Three More Cards") {
+            Button("Deal Three Cards") {
                 viewModel.dealThreeMoreCards()
             }
+            .disabled(viewModel.deck.isEmpty)
+            Spacer()
+                
         }
         .padding()
     }

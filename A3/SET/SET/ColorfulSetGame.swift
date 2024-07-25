@@ -32,9 +32,21 @@ class ColorfulSetGame: ObservableObject {
         }
     }
     
+    func newGame() {
+        model = ColorfulSetGame.createSetGame()
+    }
+    
     var cardsInPlay: [Card] {
         var returnCards: [ColorfulSetGame.Card] = []
         for card in model.cardsInPlay {
+            returnCards.append(Card(card))
+        }
+        return returnCards
+    }
+    
+    var deck: [Card] {
+        var returnCards: [ColorfulSetGame.Card] = []
+        for card in model.deck {
             returnCards.append(Card(card))
         }
         return returnCards
