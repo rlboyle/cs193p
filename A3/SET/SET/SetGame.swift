@@ -13,7 +13,7 @@ struct SetGame<Feature: Equatable> {
     
     private(set) var deck: [Card]
     private(set) var cardsInPlay: [Card]
-    private(set) var cardsCurrentlySelected = 0
+    private(set) var selectedCards: [Int] = []
     
     
     init(totalNumberOfCards: Int, numberOfCardsToShow: Int, cardContentFactory: (Int) -> CardSymbol) {
@@ -31,21 +31,29 @@ struct SetGame<Feature: Equatable> {
         }
     }
     
-    private func matchCheck(card1: Card, card2: Card, card3: Card) -> Bool {
-        return true
-    }
-    
     mutating func choose(_ card: Card) {
-        if let chosenIndex = cardsInPlay.firstIndex(where: {$0.id == card.id}) {
-            if cardsInPlay[chosenIndex].isSelected {
-                cardsInPlay[chosenIndex].isSelected = false
-                cardsCurrentlySelected -= 1
-            } else {
+        if let chosenIndex = cardsInPlay.firstIndex(where: { $0.id == card.id }) {
+            if !cardsInPlay[chosenIndex].isSelected {
                 cardsInPlay[chosenIndex].isSelected = true
-                cardsCurrentlySelected += 1
+                selectedCards.append(chosenIndex)
+//                print(selectedCards)
+                if selectedCards.count == 3 {
+                    if match(card1: cardsInPlay[selectedCards[0]],
+                             card2: cardsInPlay[selectedCards[1]],
+                             card3: cardsInPlay[selectedCards[2]]) {
+                        print("match!")
+                        for index in selectedCards {
+                            cardsInPlay[index].isMatched = true
+                        }
+                    }
+                }
+            } else {
+                if let selectedIndex = cardsInPlay.firstIndex(where: { $0.id == card.id }) {
+//                    print(selectedIndex)
+                    selectedCards.removeAll(where: { $0 == selectedIndex })
+                    cardsInPlay[chosenIndex].isSelected = false
+                }
             }
-            
-        
         }
     }
     
