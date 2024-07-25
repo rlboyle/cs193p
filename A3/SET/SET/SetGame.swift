@@ -13,8 +13,34 @@ struct SetGame<Feature: Equatable> {
     
     private(set) var deck: [Card]
     private(set) var cardsInPlay: [Card]
-    private(set) var selectedCards: [Int] = []
     
+    private var matchPresent: Bool {
+        for card in cardsInPlay {
+            if card.isMatched {
+                return true
+            }
+        }
+        return false
+    }
+    
+    private var selectedCards: [Card] {
+        get {
+            var ret: [Card] = []
+            for card in cardsInPlay {
+                if card.isSelected {
+                    ret.append(card)
+                }
+            }
+            return ret
+        }
+        
+        set {
+            for index in 0..<cardsInPlay.count {
+                cardsInPlay[index].isSelected = false
+            }
+        }
+        
+    }
     
     init(totalNumberOfCards: Int, numberOfCardsToShow: Int, cardContentFactory: (Int) -> CardSymbol) {
         deck = []
@@ -23,61 +49,98 @@ struct SetGame<Feature: Equatable> {
             let cardSymbol = cardContentFactory(cardIndex)
             deck.append(Card(symbol: cardSymbol, id: cardIndex))
         }
+        
         deck.shuffle()
         for _ in 0..<numberOfCardsToShow {
             if let cardToPlay = deck.popLast() {
                 cardsInPlay.append(cardToPlay)
             }
+            
         }
+        
     }
     
     mutating func choose(_ card: Card) {
         
-        if let chosenIndex = cardsInPlay.firstIndex(where: { $0.id == card.id }) {
+        // if chosen card is valid
+        if let chosenIndex = getCardIndex(card) {
+            
+            // if the chosen card is not matched
             if !cardsInPlay[chosenIndex].isMatched {
+                
+                // if the chosen card is not selected
                 if !cardsInPlay[chosenIndex].isSelected {
+                    
                     cardsInPlay[chosenIndex].isSelected = true
-                    selectedCards.append(chosenIndex)
+                    
                     if selectedCards.count == 3 {
-                        if match(card1: cardsInPlay[selectedCards[0]],
-                                 card2: cardsInPlay[selectedCards[1]],
-                                 card3: cardsInPlay[selectedCards[2]]) {
-                            print("match!")
-                            for index in selectedCards {
-                                cardsInPlay[index].isMatched = true
-                            }
-                        }
                         
-                    } else if selectedCards.count > 3 {
-                        for c in cardsInPlay {
-                            if c.isMatched {
-                                if let indexToDelete = cardsInPlay.firstIndex(where: { $0.id == c.id }) {
-                                    if let newCard = deck.popLast() {
-                                        cardsInPlay[indexToDelete] = newCard
-                                    } else {
-                                        print(indexToDelete)
-                                        cardsInPlay.remove(at: indexToDelete)
-                                    }
-                                    selectedCards.removeAll(where: { $0 != chosenIndex })
-                                    print(chosenIndex)
+                        // if a match is found, set matched to be true on all matched cards
+                        if match(card1: selectedCards[0],
+                                 card2: selectedCards[1],
+                                 card3: selectedCards[2]) {
+                            print("match!")
+                            
+                            for c in selectedCards {
+                                if let selectedCardIndex = getCardIndex(c) {
+                                    cardsInPlay[selectedCardIndex].isMatched = true
                                 }
                             }
+                            
+                        }
+                        
+                    
+                    } else if selectedCards.count > 3 {
+                        
+                        if matchPresent {
+                            
+                            var cardsToReplace: [Card] = []
+                            for c in cardsInPlay {
+                                if c.isMatched {
+                                    print(c)
+                                    cardsToReplace.append(c)
+                                }
+                            }
+                            
+                            for c in cardsToReplace {
+                                if let poppedCard = deck.popLast() {
+                                    print("replaced")
+                                    replaceCard(c, with: poppedCard)
+                                } else {
+                                    removeCard(c)
+                                }
+                            }
+                            
+                        } else {
+                            selectedCards = []
+                            cardsInPlay[chosenIndex].isSelected = true
                         }
                     }
-                    print(selectedCards)
+//                    print(selectedCards)
                     
-                    
-                    
-                    
+                // if chosen card is already selected
                 } else {
-                    if let selectedIndex = cardsInPlay.firstIndex(where: { $0.id == card.id }) {
-                        //                    print(selectedIndex)
-                        selectedCards.removeAll(where: { $0 == selectedIndex })
-                        cardsInPlay[chosenIndex].isSelected = false
-                    }
+                    cardsInPlay[chosenIndex].isSelected = false
                 }
             }
         }
+    }
+    
+    mutating func removeCard(_ card: Card) {
+        cardsInPlay.removeAll(where: { $0.id == card.id })
+    }
+    
+    mutating func replaceCard(_ card: Card, with newCard: Card) {
+        if let index = getCardIndex(card) {
+            cardsInPlay[index] = newCard
+        }
+    }
+    
+    func getCardIndex(_  card: Card) -> Int? {
+        if let index = cardsInPlay.firstIndex(where: { $0.id == card.id }) {
+            return index
+        }
+        return nil
     }
     
     mutating func dealThreeMoreCards() {
