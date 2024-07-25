@@ -62,6 +62,11 @@ struct SetGame<Feature: Equatable> {
     
     mutating func choose(_ card: Card) {
         
+        // if no match is present and three cards are already selected, then deselect currently selected cards
+        if !matchPresent && selectedCards.count >= 3 {
+            selectedCards = []
+        }
+        
         // if chosen card is valid
         if let chosenIndex = getCardIndex(card) {
             
@@ -94,6 +99,7 @@ struct SetGame<Feature: Equatable> {
                         
                         if matchPresent {
                             
+                            // find all cards that need to be replaced
                             var cardsToReplace: [Card] = []
                             for c in cardsInPlay {
                                 if c.isMatched {
@@ -102,6 +108,7 @@ struct SetGame<Feature: Equatable> {
                                 }
                             }
                             
+                            // replace or remove cards
                             for c in cardsToReplace {
                                 if let poppedCard = deck.popLast() {
                                     print("replaced")
@@ -112,7 +119,6 @@ struct SetGame<Feature: Equatable> {
                             }
                             
                         } else {
-                            selectedCards = []
                             cardsInPlay[chosenIndex].isSelected = true
                         }
                     }
@@ -153,10 +159,10 @@ struct SetGame<Feature: Equatable> {
     
     func match(card1: Card, card2: Card, card3: Card) -> Bool {
         for index in 0..<card1.symbol.count {
-//            if !((card1.symbol[index] == card2.symbol[index] && card2.symbol[index] == card3.symbol[index] && card1.symbol[index] == card3.symbol[index])
-//            || (card1.symbol[index] != card2.symbol[index] && card2.symbol[index] != card3.symbol[index] && card1.symbol[index] != card3.symbol[index])){
-//                return false
-//            }
+            if !((card1.symbol[index] == card2.symbol[index] && card2.symbol[index] == card3.symbol[index] && card1.symbol[index] == card3.symbol[index])
+            || (card1.symbol[index] != card2.symbol[index] && card2.symbol[index] != card3.symbol[index] && card1.symbol[index] != card3.symbol[index])){
+                return false
+            }
 
         }
         return true
