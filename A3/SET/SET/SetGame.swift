@@ -46,7 +46,20 @@ struct SetGame<Feature: Equatable> {
                             cardsInPlay[index].isMatched = true
                         }
                     }
+                } else if selectedCards.count > 3 {
+                    for index in selectedCards.prefix(3) {
+                        if let newCard = deck.popLast() {
+                            cardsInPlay[index] = newCard
+                        } else {
+                            cardsInPlay.remove(at: index)
+                        }
+                        selectedCards.removeAll(where: { $0 != chosenIndex })
+                        
+                    }
                 }
+                
+                
+                
             } else {
                 if let selectedIndex = cardsInPlay.firstIndex(where: { $0.id == card.id }) {
 //                    print(selectedIndex)
@@ -67,10 +80,11 @@ struct SetGame<Feature: Equatable> {
     
     func match(card1: Card, card2: Card, card3: Card) -> Bool {
         for index in 0..<card1.symbol.count {
-            if !((card1.symbol[index] == card2.symbol[index] && card2.symbol[index] == card3.symbol[index] && card1.symbol[index] == card3.symbol[index])
-            || (card1.symbol[index] != card2.symbol[index] && card2.symbol[index] != card3.symbol[index] && card1.symbol[index] != card3.symbol[index])){
-                return false
-            }
+//            if !((card1.symbol[index] == card2.symbol[index] && card2.symbol[index] == card3.symbol[index] && card1.symbol[index] == card3.symbol[index])
+//            || (card1.symbol[index] != card2.symbol[index] && card2.symbol[index] != card3.symbol[index] && card1.symbol[index] != card3.symbol[index])){
+//                return false
+//            }
+
         }
         return true
     }
