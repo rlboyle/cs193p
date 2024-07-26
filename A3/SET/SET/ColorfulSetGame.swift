@@ -9,7 +9,6 @@ import SwiftUI
 
 class ColorfulSetGame: ObservableObject {
     
-    
     typealias Game = SetGame<Symbol.SymbolFeature>
     
     @Published private var model = createSetGame()
@@ -27,7 +26,7 @@ class ColorfulSetGame: ObservableObject {
                 }
             }
         }
-        return Game(totalNumberOfCards: numberOfCardsInDeck, numberOfCardsToShow: 12) { index in
+        return Game(totalNumberOfCards: numberOfCardsInDeck, numberOfCardsToShow: Constants.numberofCardsToShow) { index in
             symbols[index]
         }
     }
@@ -57,7 +56,7 @@ class ColorfulSetGame: ObservableObject {
     }
     
     func dealThreeMoreCards() {
-        model.dealThreeMoreCards()
+        model.dealMoreCards()
     }
     
     struct Card: Identifiable {
@@ -68,12 +67,20 @@ class ColorfulSetGame: ObservableObject {
         init(_ card: Game.Card) {
             self.card = card
             self.id = card.id
-            self.symbol = Symbol(color: card.symbol[0],
-                                 shape: card.symbol[1],
-                                 quantity: card.symbol[2],
-                                 shading: card.symbol[3])
+            self.symbol = Symbol(color: card.symbol[Constants.symbolColorIndex],
+                                 shape: card.symbol[Constants.symbolShapeIndex],
+                                 quantity: card.symbol[Constants.symbolQuantityIndex],
+                                 shading: card.symbol[Constants.symbolShadingIndex])
         }
         
+    }
+    
+    private struct Constants {
+        static let numberofCardsToShow = 12
+        static let symbolColorIndex = 0
+        static let symbolShapeIndex = 1
+        static let symbolQuantityIndex = 2
+        static let symbolShadingIndex = 3
     }
     
 }

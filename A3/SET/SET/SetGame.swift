@@ -9,6 +9,9 @@ import Foundation
 
 struct SetGame<Feature: Equatable> {
     
+
+    let numberOfCardsPerMatch = 3
+    
     typealias CardSymbol = [Feature]
     
     private(set) var deck: [Card]
@@ -63,7 +66,7 @@ struct SetGame<Feature: Equatable> {
     mutating func choose(_ card: Card) {
         
         // if no match is present and three cards are already selected, then deselect currently selected cards
-        if !matchPresent && selectedCards.count >= 3 {
+        if !matchPresent && selectedCards.count >= numberOfCardsPerMatch {
             selectedCards = []
         }
         
@@ -78,13 +81,12 @@ struct SetGame<Feature: Equatable> {
                     
                     cardsInPlay[chosenIndex].isSelected = true
                     
-                    if selectedCards.count == 3 {
+                    if selectedCards.count == numberOfCardsPerMatch {
                         
                         // if a match is found, set matched to be true on all matched cards
                         if match(card1: selectedCards[0],
                                  card2: selectedCards[1],
                                  card3: selectedCards[2]) {
-                            print("match!")
                             
                             for c in selectedCards {
                                 if let selectedCardIndex = getCardIndex(c) {
@@ -93,9 +95,8 @@ struct SetGame<Feature: Equatable> {
                             }
                             
                         }
-                        
                     
-                    } else if selectedCards.count > 3 {
+                    } else if selectedCards.count > numberOfCardsPerMatch {
                         
                         if matchPresent {
                             
@@ -111,7 +112,6 @@ struct SetGame<Feature: Equatable> {
                             // replace or remove cards
                             for c in cardsToReplace {
                                 if let poppedCard = deck.popLast() {
-                                    print("replaced")
                                     replaceCard(c, with: poppedCard)
                                 } else {
                                     removeCard(c)
@@ -122,7 +122,6 @@ struct SetGame<Feature: Equatable> {
                             cardsInPlay[chosenIndex].isSelected = true
                         }
                     }
-//                    print(selectedCards)
                     
                 // if chosen card is already selected
                 } else {
@@ -149,7 +148,7 @@ struct SetGame<Feature: Equatable> {
         return nil
     }
     
-    mutating func dealThreeMoreCards() {
+    mutating func dealMoreCards() {
         if matchPresent {
             for card in selectedCards {
                 if let cardToDeal = deck.popLast() {
@@ -157,7 +156,7 @@ struct SetGame<Feature: Equatable> {
                 }
             }
         } else {
-            for _ in 0..<3 {
+            for _ in 0..<numberOfCardsPerMatch {
                 if let cardToDeal = deck.popLast() {
                     cardsInPlay.append(cardToDeal)
                 }

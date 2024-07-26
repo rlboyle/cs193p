@@ -9,10 +9,13 @@ import SwiftUI
 
 extension Shape {
     @ViewBuilder func applyShading(_ shading: Symbol.SymbolFeature) -> some View {
+        let borderLineWidth: CGFloat = 4
+        let stripedOpacity: CGFloat = 0.3
+        
         switch shading {
-        case .one: self.stroke(lineWidth: 4)
+        case .one: self.stroke(lineWidth: borderLineWidth)
         case .two: self.opacity(1)
-        case .three: self.opacity(0.4)
+        case .three: self.opacity(stripedOpacity)
         }
     }
 }
@@ -42,17 +45,17 @@ struct Symbol {
     
     func getColor() -> Color {
         switch self.color {
-        case .one: .red
-        case .two: .green
-        case .three: .blue
+        case .one: Constants.colorOne
+        case .two: Constants.colorTwo
+        case .three: Constants.colorThree
         }
     }
     
     func numberOfShapesToMake() -> Int {
         switch self.quantity {
-        case .one: 1
-        case .two: 2
-        case .three: 3
+        case .one: Constants.oneShape
+        case .two: Constants.twoShapes
+        case .three: Constants.threeShapes
         }
     }
     
@@ -60,6 +63,15 @@ struct Symbol {
         case one
         case two
         case three
+    }
+    
+    private struct Constants {
+        static let colorOne: Color = .red
+        static let colorTwo: Color = .green
+        static let colorThree: Color = .blue
+        static let oneShape = 1
+        static let twoShapes = 2
+        static let threeShapes = 3
     }
     
 }

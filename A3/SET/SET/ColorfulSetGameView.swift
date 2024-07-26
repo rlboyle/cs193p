@@ -37,7 +37,7 @@ struct ColorfulSetGameView: View {
     }
     
     var cards: some View {
-        AspectVGrid(viewModel.cardsInPlay, aspectRatio: 3/2) {card in
+        AspectVGrid(viewModel.cardsInPlay, aspectRatio: Constants.aspectRatio, minimumSize: Constants.minimumCardSize) {card in
             CardView(card)
                 .onTapGesture {
                     viewModel.choose(card)
@@ -45,51 +45,11 @@ struct ColorfulSetGameView: View {
         }
     }
     
-}
-
-struct CardView: View {
-    let card: ColorfulSetGame.Card
-    
-    var borderColor: Color {
-        if card.card.isMatched {
-            .green
-        } else if card.card.isSelected {
-            .red
-        } else {
-            .black
-        }
+    private struct Constants {
+        static let aspectRatio: CGFloat = 3/2
+        static let minimumCardSize = 70.0
     }
     
-    init(_ card: ColorfulSetGame.Card) {
-        self.card = card
-    }
-    
-    var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                let aspectRatio = (geometry.size.width/geometry.size.height)/3
-                let base = RoundedRectangle(cornerRadius: 12)
-                    base.strokeBorder(lineWidth: 3)
-                    .foregroundStyle(borderColor)
-                        .background(
-                            base.fill(.white)
-                        )
-                drawableCardSymbol(aspectRatio: aspectRatio)
-            }
-        }
-    }
-    
-    @ViewBuilder func drawableCardSymbol(aspectRatio: CGFloat) -> some View {
-        let shape = card.symbol.drawableShape(aspectRatio: aspectRatio)
-            .foregroundStyle(card.symbol.getColor())
-        HStack {
-            ForEach(0..<card.symbol.numberOfShapesToMake(), id: \.self) {_ in
-                shape
-            }
-        }
-        .padding()
-    }
-
 }
 
 #Preview {

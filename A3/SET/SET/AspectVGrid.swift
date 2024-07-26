@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct AspectVGrid<Item: Identifiable, ItemView: View>: View {
-    var items: [Item]
+    let items: [Item]
     var aspectRatio: CGFloat = 1
-    var content: (Item) -> ItemView
+    let content: (Item) -> ItemView
+    var minimumSize: CGFloat = 80
     
-    init(_ items: [Item], aspectRatio: CGFloat, @ViewBuilder content: @escaping (Item) -> ItemView) {
+    
+    init(_ items: [Item], aspectRatio: CGFloat, minimumSize: CGFloat ,@ViewBuilder content: @escaping (Item) -> ItemView) {
         self.items = items
         self.aspectRatio = aspectRatio
         self.content = content
+        self.minimumSize = minimumSize
     }
     
     var body: some View {
@@ -26,7 +29,7 @@ struct AspectVGrid<Item: Identifiable, ItemView: View>: View {
                 atAspectRatio: aspectRatio
             )
             ScrollView {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: max(gridItemSize, 80)), spacing: 0)], spacing: 0) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: max(gridItemSize, minimumSize)), spacing: 0)], spacing: 0) {
                     ForEach(items) { item in
                         content(item)
                             .aspectRatio(aspectRatio, contentMode: .fit)
