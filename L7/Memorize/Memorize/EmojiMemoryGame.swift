@@ -10,6 +10,8 @@ import SwiftUI
 
 class EmojiMemoryGame: ObservableObject {
     
+    typealias Card = MemoryGame<String>.Card
+    
     let colorChoices: [String:Color] = ["orange": Color(.orange),
                                         "blue": Color(.blue),
                                         "green": Color(.green),
@@ -45,16 +47,16 @@ class EmojiMemoryGame: ObservableObject {
     
     @Published private var model = createMemoryGame()
     
-    var cards: Array<MemoryGame<String>.Card> {
-        return model.cards
+    var cards: Array<Card> {
+        model.cards
     }
     
     func shuffle() {
         model.shuffle()
     }
     
-    func choose(_ card: MemoryGame<String>.Card) {
-        return model.choose(card: card)
+    func choose(_ card: Card) {
+        model.choose(card: card)
     }
     
     func reset() {
