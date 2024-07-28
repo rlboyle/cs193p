@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct EmojiMemoryGameView: View {
+    
+    typealias Card = MemoryGame<String>.Card
+    
     @ObservedObject var viewModel: EmojiMemoryGame
+    
+    let spacing: CGFloat = 4
     
     var body: some View {
         VStack {
@@ -16,33 +21,53 @@ struct EmojiMemoryGameView: View {
                 .font(.largeTitle)
                 .bold()
                 cards
-                    .animation(.default, value: viewModel.cards)
 
             HStack {
-                Button("New Game") {
-                    viewModel.reset()
-                }
+                newGame
                 Spacer()
-                Text("Score: \(viewModel.score())")
+                score
                 Spacer()
-                Button("Shuffle") {
-                    viewModel.shuffle()
-                }
+                shuffle
             }
         }
         .padding()
     }
     
+    var newGame: some View {
+        Button("New Game") {
+            viewModel.reset()
+        }
+    }
+    
+    var score: some View {
+        Text("Score: \(viewModel.score())")
+            .animation(nil)
+    }
+    
+    var shuffle: some View {
+        Button("Shuffle") {
+            withAnimation {
+                viewModel.shuffle()
+            }
+        }
+    }
     
     var cards: some View {
         AspectVGrid(viewModel.cards, aspectRatio: 2/3, minimumSize: 80) { card in
             CardView(card)
-                .aspectRatio(2/3, contentMode: .fit)
+                .padding(spacing)
+                .overlay(FlyingNumber(number: scoreChange(causedBy: card)))
                 .onTapGesture {
-                    viewModel.choose(card)
+                    withAnimation {
+                        viewModel.choose(card)
+                    }
                 }
         }
         .foregroundColor(viewModel.themeColor())
+    }
+    
+    private func scoreChange(causedBy card: Card) -> Int {
+        return 0
     }
     
 }
