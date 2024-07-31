@@ -63,22 +63,24 @@ class EmojiMemoryGame: ObservableObject {
         model = EmojiMemoryGame.createMemoryGame()
     }
     
-    func themeName() -> String {
+    var themeName: String {
         if let theme = EmojiMemoryGame.currentTheme {
             return theme.name
         }
         return ""
     }
     
-    func themeColor() -> Color? {
+    var themeColor: Color {
         if let theme = EmojiMemoryGame.currentTheme {
-            return colorChoices[theme.color]
+            if let returnColor = colorChoices[theme.color] {
+                return returnColor
+            }
         }
-        return nil
+        return .black
     }
     
-    func score() -> Int {
-        return model.score
+    var score: Int {
+        model.score
     }
     
 }
