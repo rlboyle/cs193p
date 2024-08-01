@@ -26,14 +26,44 @@ struct ColorfulSetGameView: View {
                 }
             }
             cards
-            Button("Deal Three Cards") {
-                viewModel.dealThreeMoreCards()
+            HStack {
+                deck
+                Spacer()
+                dealMoreCards
+                Spacer()
+                discard
             }
-            .disabled(viewModel.deck.isEmpty)
             Spacer()
                 
         }
         .padding()
+    }
+    
+    var dealMoreCards: some View {
+        Button("Deal Three Cards") {
+            withAnimation(.easeInOut(duration: 1)) {
+                viewModel.dealThreeMoreCards()
+            }
+        }
+        .disabled(viewModel.deck.isEmpty)
+    }
+    
+    var deck: some View {
+        ZStack {
+            ForEach (viewModel.deck) { card in
+                CardView(card)
+            }
+        }
+        .frame(width: Constants.deckWidth, height: Constants.deckWidth/Constants.aspectRatio)
+    }
+    
+    var discard: some View {
+        ZStack {
+            ForEach (viewModel.discardPile) { card in
+                CardView(card)
+            }
+        }
+        .frame(width: Constants.deckWidth, height: Constants.deckWidth/Constants.aspectRatio)
     }
     
     var cards: some View {
@@ -47,7 +77,8 @@ struct ColorfulSetGameView: View {
     
     private struct Constants {
         static let aspectRatio: CGFloat = 3/2
-        static let minimumCardSize = 70.0
+        static let minimumCardSize = 80.0
+        static let deckWidth:CGFloat = 75
     }
     
 }

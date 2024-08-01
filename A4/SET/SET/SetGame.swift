@@ -16,6 +16,7 @@ struct SetGame<Feature: Equatable> {
     
     private(set) var deck: [Card]
     private(set) var cardsInPlay: [Card]
+    private(set) var discardPile: [Card] = []
     
     private var matchPresent: Bool {
         for card in cardsInPlay {
@@ -133,11 +134,13 @@ struct SetGame<Feature: Equatable> {
     
     mutating func removeCard(_ card: Card) {
         cardsInPlay.removeAll(where: { $0.id == card.id })
+        discardPile.append(card)
     }
     
     mutating func replaceCard(_ card: Card, with newCard: Card) {
         if let index = getCardIndex(card) {
             cardsInPlay[index] = newCard
+            discardPile.append(card)
         }
     }
     

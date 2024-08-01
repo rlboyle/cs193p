@@ -51,6 +51,14 @@ class ColorfulSetGame: ObservableObject {
         return returnCards
     }
     
+    var discardPile: [Card] {
+        var returnCards: [ColorfulSetGame.Card] = []
+        for card in model.discardPile {
+            returnCards.append(Card(card))
+        }
+        return returnCards
+    }
+    
     func choose(_ card: Card) {
         model.choose(card.card)
     }

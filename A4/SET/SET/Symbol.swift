@@ -9,7 +9,7 @@ import SwiftUI
 
 extension Shape {
     @ViewBuilder func applyShading(_ shading: Symbol.SymbolFeature) -> some View {
-        let borderLineWidth: CGFloat = 4
+        let borderLineWidth: CGFloat = 3
         let stripedOpacity: CGFloat = 0.3
         
         switch shading {
