@@ -7,34 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C294BD4B2C4086CA0084CFC2 /* SETApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294BD4A2C4086CA0084CFC2 /* SETApp.swift */; };
-		C294BD4D2C4086CA0084CFC2 /* ColorfulSetGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294BD4C2C4086CA0084CFC2 /* ColorfulSetGameView.swift */; };
-		C294BD4F2C4086CE0084CFC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C294BD4E2C4086CE0084CFC2 /* Assets.xcassets */; };
-		C294BD522C4086CE0084CFC2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C294BD512C4086CE0084CFC2 /* Preview Assets.xcassets */; };
-		C294BD5B2C4E12780084CFC2 /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294BD5A2C4E12780084CFC2 /* AspectVGrid.swift */; };
-		C294BD5D2C4E1D6F0084CFC2 /* ColorfulSetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294BD5C2C4E1D6F0084CFC2 /* ColorfulSetGame.swift */; };
-		C294BD5F2C4E1FE20084CFC2 /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294BD5E2C4E1FE20084CFC2 /* SetGame.swift */; };
-		C294BD612C508CB50084CFC2 /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294BD602C508CB50084CFC2 /* Symbol.swift */; };
-		C294BD632C508DB40084CFC2 /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294BD622C508DB40084CFC2 /* Diamond.swift */; };
-		C2C90CB82C533B7500755F96 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C90CB72C533B7500755F96 /* CardView.swift */; };
+		C2E4DC132C5C411900586D83 /* SETApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E4DC122C5C411900586D83 /* SETApp.swift */; };
+		C2E4DC152C5C411900586D83 /* ColorfulSetGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E4DC142C5C411900586D83 /* ColorfulSetGameView.swift */; };
+		C2E4DC172C5C411A00586D83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2E4DC162C5C411A00586D83 /* Assets.xcassets */; };
+		C2E4DC1A2C5C411A00586D83 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2E4DC192C5C411A00586D83 /* Preview Assets.xcassets */; };
+		C2E4DC212C5C413B00586D83 /* ColorfulSetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E4DC202C5C413B00586D83 /* ColorfulSetGame.swift */; };
+		C2E4DC232C5C414C00586D83 /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E4DC222C5C414C00586D83 /* SetGame.swift */; };
+		C2E4DC252C5C415D00586D83 /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E4DC242C5C415D00586D83 /* AspectVGrid.swift */; };
+		C2E4DC272C5C416900586D83 /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E4DC262C5C416900586D83 /* Diamond.swift */; };
+		C2E4DC292C5C418E00586D83 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E4DC282C5C418E00586D83 /* CardView.swift */; };
+		C2E4DC2B2C5C41A500586D83 /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E4DC2A2C5C41A500586D83 /* Symbol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C294BD472C4086CA0084CFC2 /* SET.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SET.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C294BD4A2C4086CA0084CFC2 /* SETApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SETApp.swift; sourceTree = "<group>"; };
-		C294BD4C2C4086CA0084CFC2 /* ColorfulSetGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorfulSetGameView.swift; sourceTree = "<group>"; };
-		C294BD4E2C4086CE0084CFC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C294BD512C4086CE0084CFC2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C294BD5A2C4E12780084CFC2 /* AspectVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
-		C294BD5C2C4E1D6F0084CFC2 /* ColorfulSetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorfulSetGame.swift; sourceTree = "<group>"; };
-		C294BD5E2C4E1FE20084CFC2 /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
-		C294BD602C508CB50084CFC2 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
-		C294BD622C508DB40084CFC2 /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
-		C2C90CB72C533B7500755F96 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		C2E4DC0F2C5C411800586D83 /* SET.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SET.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2E4DC122C5C411900586D83 /* SETApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SETApp.swift; sourceTree = "<group>"; };
+		C2E4DC142C5C411900586D83 /* ColorfulSetGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorfulSetGameView.swift; sourceTree = "<group>"; };
+		C2E4DC162C5C411A00586D83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C2E4DC192C5C411A00586D83 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C2E4DC202C5C413B00586D83 /* ColorfulSetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorfulSetGame.swift; sourceTree = "<group>"; };
+		C2E4DC222C5C414C00586D83 /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
+		C2E4DC242C5C415D00586D83 /* AspectVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
+		C2E4DC262C5C416900586D83 /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
+		C2E4DC282C5C418E00586D83 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		C2E4DC2A2C5C41A500586D83 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C294BD442C4086CA0084CFC2 /* Frameworks */ = {
+		C2E4DC0C2C5C411800586D83 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -44,43 +44,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C294BD3E2C4086CA0084CFC2 = {
+		C2E4DC062C5C411800586D83 = {
 			isa = PBXGroup;
 			children = (
-				C294BD492C4086CA0084CFC2 /* SET */,
-				C294BD482C4086CA0084CFC2 /* Products */,
+				C2E4DC112C5C411800586D83 /* SET */,
+				C2E4DC102C5C411800586D83 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		C294BD482C4086CA0084CFC2 /* Products */ = {
+		C2E4DC102C5C411800586D83 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C294BD472C4086CA0084CFC2 /* SET.app */,
+				C2E4DC0F2C5C411800586D83 /* SET.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C294BD492C4086CA0084CFC2 /* SET */ = {
+		C2E4DC112C5C411800586D83 /* SET */ = {
 			isa = PBXGroup;
 			children = (
-				C294BD602C508CB50084CFC2 /* Symbol.swift */,
-				C294BD4A2C4086CA0084CFC2 /* SETApp.swift */,
-				C294BD4C2C4086CA0084CFC2 /* ColorfulSetGameView.swift */,
-				C2C90CB72C533B7500755F96 /* CardView.swift */,
-				C294BD622C508DB40084CFC2 /* Diamond.swift */,
-				C294BD5E2C4E1FE20084CFC2 /* SetGame.swift */,
-				C294BD5C2C4E1D6F0084CFC2 /* ColorfulSetGame.swift */,
-				C294BD5A2C4E12780084CFC2 /* AspectVGrid.swift */,
-				C294BD4E2C4086CE0084CFC2 /* Assets.xcassets */,
-				C294BD502C4086CE0084CFC2 /* Preview Content */,
+				C2E4DC122C5C411900586D83 /* SETApp.swift */,
+				C2E4DC142C5C411900586D83 /* ColorfulSetGameView.swift */,
+				C2E4DC202C5C413B00586D83 /* ColorfulSetGame.swift */,
+				C2E4DC222C5C414C00586D83 /* SetGame.swift */,
+				C2E4DC242C5C415D00586D83 /* AspectVGrid.swift */,
+				C2E4DC262C5C416900586D83 /* Diamond.swift */,
+				C2E4DC282C5C418E00586D83 /* CardView.swift */,
+				C2E4DC2A2C5C41A500586D83 /* Symbol.swift */,
+				C2E4DC162C5C411A00586D83 /* Assets.xcassets */,
+				C2E4DC182C5C411A00586D83 /* Preview Content */,
 			);
 			path = SET;
 			sourceTree = "<group>";
 		};
-		C294BD502C4086CE0084CFC2 /* Preview Content */ = {
+		C2E4DC182C5C411A00586D83 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				C294BD512C4086CE0084CFC2 /* Preview Assets.xcassets */,
+				C2E4DC192C5C411A00586D83 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -88,13 +88,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C294BD462C4086CA0084CFC2 /* SET */ = {
+		C2E4DC0E2C5C411800586D83 /* SET */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C294BD552C4086CE0084CFC2 /* Build configuration list for PBXNativeTarget "SET" */;
+			buildConfigurationList = C2E4DC1D2C5C411A00586D83 /* Build configuration list for PBXNativeTarget "SET" */;
 			buildPhases = (
-				C294BD432C4086CA0084CFC2 /* Sources */,
-				C294BD442C4086CA0084CFC2 /* Frameworks */,
-				C294BD452C4086CA0084CFC2 /* Resources */,
+				C2E4DC0B2C5C411800586D83 /* Sources */,
+				C2E4DC0C2C5C411800586D83 /* Frameworks */,
+				C2E4DC0D2C5C411800586D83 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -102,25 +102,25 @@
 			);
 			name = SET;
 			productName = SET;
-			productReference = C294BD472C4086CA0084CFC2 /* SET.app */;
+			productReference = C2E4DC0F2C5C411800586D83 /* SET.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C294BD3F2C4086CA0084CFC2 /* Project object */ = {
+		C2E4DC072C5C411800586D83 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
-					C294BD462C4086CA0084CFC2 = {
+					C2E4DC0E2C5C411800586D83 = {
 						CreatedOnToolsVersion = 15.4;
 					};
 				};
 			};
-			buildConfigurationList = C294BD422C4086CA0084CFC2 /* Build configuration list for PBXProject "SET" */;
+			buildConfigurationList = C2E4DC0A2C5C411800586D83 /* Build configuration list for PBXProject "SET" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -128,48 +128,48 @@
 				en,
 				Base,
 			);
-			mainGroup = C294BD3E2C4086CA0084CFC2;
-			productRefGroup = C294BD482C4086CA0084CFC2 /* Products */;
+			mainGroup = C2E4DC062C5C411800586D83;
+			productRefGroup = C2E4DC102C5C411800586D83 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C294BD462C4086CA0084CFC2 /* SET */,
+				C2E4DC0E2C5C411800586D83 /* SET */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C294BD452C4086CA0084CFC2 /* Resources */ = {
+		C2E4DC0D2C5C411800586D83 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C294BD522C4086CE0084CFC2 /* Preview Assets.xcassets in Resources */,
-				C294BD4F2C4086CE0084CFC2 /* Assets.xcassets in Resources */,
+				C2E4DC1A2C5C411A00586D83 /* Preview Assets.xcassets in Resources */,
+				C2E4DC172C5C411A00586D83 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C294BD432C4086CA0084CFC2 /* Sources */ = {
+		C2E4DC0B2C5C411800586D83 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C294BD5D2C4E1D6F0084CFC2 /* ColorfulSetGame.swift in Sources */,
-				C294BD4D2C4086CA0084CFC2 /* ColorfulSetGameView.swift in Sources */,
-				C294BD5F2C4E1FE20084CFC2 /* SetGame.swift in Sources */,
-				C294BD632C508DB40084CFC2 /* Diamond.swift in Sources */,
-				C294BD4B2C4086CA0084CFC2 /* SETApp.swift in Sources */,
-				C294BD5B2C4E12780084CFC2 /* AspectVGrid.swift in Sources */,
-				C2C90CB82C533B7500755F96 /* CardView.swift in Sources */,
-				C294BD612C508CB50084CFC2 /* Symbol.swift in Sources */,
+				C2E4DC292C5C418E00586D83 /* CardView.swift in Sources */,
+				C2E4DC272C5C416900586D83 /* Diamond.swift in Sources */,
+				C2E4DC152C5C411900586D83 /* ColorfulSetGameView.swift in Sources */,
+				C2E4DC212C5C413B00586D83 /* ColorfulSetGame.swift in Sources */,
+				C2E4DC232C5C414C00586D83 /* SetGame.swift in Sources */,
+				C2E4DC2B2C5C41A500586D83 /* Symbol.swift in Sources */,
+				C2E4DC252C5C415D00586D83 /* AspectVGrid.swift in Sources */,
+				C2E4DC132C5C411900586D83 /* SETApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		C294BD532C4086CE0084CFC2 /* Debug */ = {
+		C2E4DC1B2C5C411A00586D83 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -232,7 +232,7 @@
 			};
 			name = Debug;
 		};
-		C294BD542C4086CE0084CFC2 /* Release */ = {
+		C2E4DC1C2C5C411A00586D83 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -288,7 +288,7 @@
 			};
 			name = Release;
 		};
-		C294BD562C4086CE0084CFC2 /* Debug */ = {
+		C2E4DC1E2C5C411A00586D83 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -317,7 +317,7 @@
 			};
 			name = Debug;
 		};
-		C294BD572C4086CE0084CFC2 /* Release */ = {
+		C2E4DC1F2C5C411A00586D83 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -349,25 +349,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C294BD422C4086CA0084CFC2 /* Build configuration list for PBXProject "SET" */ = {
+		C2E4DC0A2C5C411800586D83 /* Build configuration list for PBXProject "SET" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C294BD532C4086CE0084CFC2 /* Debug */,
-				C294BD542C4086CE0084CFC2 /* Release */,
+				C2E4DC1B2C5C411A00586D83 /* Debug */,
+				C2E4DC1C2C5C411A00586D83 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C294BD552C4086CE0084CFC2 /* Build configuration list for PBXNativeTarget "SET" */ = {
+		C2E4DC1D2C5C411A00586D83 /* Build configuration list for PBXNativeTarget "SET" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C294BD562C4086CE0084CFC2 /* Debug */,
-				C294BD572C4086CE0084CFC2 /* Release */,
+				C2E4DC1E2C5C411A00586D83 /* Debug */,
+				C2E4DC1F2C5C411A00586D83 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = C294BD3F2C4086CA0084CFC2 /* Project object */;
+	rootObject = C2E4DC072C5C411800586D83 /* Project object */;
 }
