@@ -38,7 +38,7 @@ class ColorfulSetGame: ObservableObject {
     var cardsInPlay: [Card] {
         var returnCards: [ColorfulSetGame.Card] = []
         for card in model.cardsInPlay {
-            returnCards.append(Card(card))
+            returnCards.append(Card(card, isFaceUp: true))
         }
         return returnCards
     }
@@ -46,7 +46,7 @@ class ColorfulSetGame: ObservableObject {
     var deck: [Card] {
         var returnCards: [ColorfulSetGame.Card] = []
         for card in model.deck {
-            returnCards.append(Card(card))
+            returnCards.append(Card(card, isFaceUp: false))
         }
         return returnCards
     }
@@ -54,7 +54,7 @@ class ColorfulSetGame: ObservableObject {
     var discardPile: [Card] {
         var returnCards: [ColorfulSetGame.Card] = []
         for card in model.discardPile {
-            returnCards.append(Card(card))
+            returnCards.append(Card(card, isFaceUp: false))
         }
         return returnCards
     }
@@ -71,10 +71,12 @@ class ColorfulSetGame: ObservableObject {
         let card: Game.Card
         let id: Int
         let symbol: Symbol
+        var isFaceUp: Bool
         
-        init(_ card: Game.Card) {
+        init(_ card: Game.Card, isFaceUp: Bool) {
             self.card = card
             self.id = card.id
+            self.isFaceUp = isFaceUp
             self.symbol = Symbol(color: card.symbol[Constants.symbolColorIndex],
                                  shape: card.symbol[Constants.symbolShapeIndex],
                                  quantity: card.symbol[Constants.symbolQuantityIndex],

@@ -35,6 +35,9 @@ struct CardView: View {
                         base.fill(.white)
                     )
                 drawableCardSymbol(aspectRatio: aspectRatioSymbol)
+                base.fill(.white)
+                    .strokeBorder(lineWidth: Constants.borderLineWidth)
+                    .opacity(card.isFaceUp ? 0 : 1)
             }
         }
     }

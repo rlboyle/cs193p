@@ -41,17 +41,21 @@ struct ColorfulSetGameView: View {
     
     var dealMoreCards: some View {
         Button("Deal Three Cards") {
-            withAnimation(.easeInOut(duration: 1)) {
+            withAnimation(.easeInOut(duration: 0.5)) {
                 viewModel.dealThreeMoreCards()
             }
         }
         .disabled(viewModel.deck.isEmpty)
     }
     
+    @Namespace private var dealingNamespace
+    @Namespace private var discardNamespace
+    
     var deck: some View {
         ZStack {
             ForEach (viewModel.deck) { card in
                 CardView(card)
+                    .matchedGeometryEffect(id: card.id, in: dealingNamespace)
             }
         }
         .frame(width: Constants.deckWidth, height: Constants.deckWidth/Constants.aspectRatio)
@@ -61,6 +65,7 @@ struct ColorfulSetGameView: View {
         ZStack {
             ForEach (viewModel.discardPile) { card in
                 CardView(card)
+                    .matchedGeometryEffect(id: card.id, in: discardNamespace)
             }
         }
         .frame(width: Constants.deckWidth, height: Constants.deckWidth/Constants.aspectRatio)
@@ -69,8 +74,12 @@ struct ColorfulSetGameView: View {
     var cards: some View {
         AspectVGrid(viewModel.cardsInPlay, aspectRatio: Constants.aspectRatio, minimumSize: Constants.minimumCardSize) {card in
             CardView(card)
+                .matchedGeometryEffect(id: card.id, in: dealingNamespace)
+                .matchedGeometryEffect(id: card.id, in: discardNamespace)
                 .onTapGesture {
-                    viewModel.choose(card)
+                    withAnimation(.easeInOut(duration: 0.5)) {
+                        viewModel.choose(card)
+                    }
                 }
         }
     }
