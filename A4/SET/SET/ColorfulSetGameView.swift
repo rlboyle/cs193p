@@ -29,8 +29,6 @@ struct ColorfulSetGameView: View {
             HStack {
                 deck
                 Spacer()
-                dealMoreCards
-                Spacer()
                 discard
             }
             Spacer()
@@ -59,6 +57,11 @@ struct ColorfulSetGameView: View {
             }
         }
         .frame(width: Constants.deckWidth, height: Constants.deckWidth/Constants.aspectRatio)
+        .onTapGesture {
+            withAnimation(.easeInOut(duration: 0.5)) {
+                viewModel.dealThreeMoreCards()
+            }
+        }
     }
     
     var discard: some View {

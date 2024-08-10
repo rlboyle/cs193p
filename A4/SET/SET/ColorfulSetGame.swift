@@ -56,6 +56,9 @@ class ColorfulSetGame: ObservableObject {
         for card in model.discardPile {
             returnCards.append(Card(card, isFaceUp: false))
         }
+        if returnCards.count > 0 {
+            returnCards[returnCards.count-1].isFaceUp = true
+        }
         return returnCards
     }
     

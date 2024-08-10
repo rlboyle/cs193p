@@ -112,11 +112,12 @@ struct SetGame<Feature: Equatable> {
                             
                             // replace or remove cards
                             for c in cardsToReplace {
-                                if let poppedCard = deck.popLast() {
-                                    replaceCard(c, with: poppedCard)
-                                } else {
-                                    removeCard(c)
-                                }
+//                                if let poppedCard = deck.popLast() {
+//                                    replaceCard(c, with: poppedCard)
+//                                } else {
+//                                    removeCard(c)
+//                                }
+                                removeCard(c)
                             }
                             
                         } else {
@@ -171,7 +172,7 @@ struct SetGame<Feature: Equatable> {
         for index in 0..<card1.symbol.count {
             if !((card1.symbol[index] == card2.symbol[index] && card2.symbol[index] == card3.symbol[index] && card1.symbol[index] == card3.symbol[index])
             || (card1.symbol[index] != card2.symbol[index] && card2.symbol[index] != card3.symbol[index] && card1.symbol[index] != card3.symbol[index])){
-                return false
+                return true
             }
 
         }
