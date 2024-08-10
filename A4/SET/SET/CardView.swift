@@ -29,15 +29,17 @@ struct CardView: View {
             ZStack {
                 let aspectRatioSymbol = (geometry.size.width/geometry.size.height)/Constants.symbolToCardARFactor
                 let base = RoundedRectangle(cornerRadius: Constants.cardCornerRadius)
-                base.strokeBorder(lineWidth: Constants.borderLineWidth)
-                    .foregroundStyle(borderColor)
-                    .background(
-                        base.fill(.white)
-                    )
-                drawableCardSymbol(aspectRatio: aspectRatioSymbol)
                 base.fill(.white)
-                    .strokeBorder(lineWidth: Constants.borderLineWidth)
                     .opacity(card.isFaceUp ? 0 : 1)
+                    .overlay(
+                        base
+                            .strokeBorder(lineWidth: Constants.borderLineWidth)
+                            .foregroundStyle(borderColor)
+                            .animation(.linear(duration: 0), value: borderColor)
+                    )
+                if card.isFaceUp {
+                    drawableCardSymbol(aspectRatio: aspectRatioSymbol)
+                }
             }
         }
     }

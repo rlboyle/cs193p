@@ -74,13 +74,13 @@ struct ColorfulSetGameView: View {
     var cards: some View {
         AspectVGrid(viewModel.cardsInPlay, aspectRatio: Constants.aspectRatio, minimumSize: Constants.minimumCardSize) {card in
             CardView(card)
-                .matchedGeometryEffect(id: card.id, in: dealingNamespace)
-                .matchedGeometryEffect(id: card.id, in: discardNamespace)
                 .onTapGesture {
                     withAnimation(.easeInOut(duration: 0.5)) {
                         viewModel.choose(card)
                     }
                 }
+                .matchedGeometryEffect(id: card.id, in: dealingNamespace)
+                .matchedGeometryEffect(id: card.id, in: discardNamespace)
         }
     }
     
